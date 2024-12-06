@@ -1,23 +1,23 @@
 #!/bin/bash
 
-mkdir -p data
+mkdir -p src/html
 
 curl https://www.friedensschule.de/fileadmin/user_upload/Vertretungsplan_Ablage/subst_001.htm \
-  | sed 's/Invalid.*//g' > data/file1.html
+  | sed 's/Invalid.*//g' > src/html/file1.html
 
 curl https://www.friedensschule.de/fileadmin/user_upload/Vertretungsplan_Ablage/subst_002.htm \
-  | sed 's/Invalid.*//g' > data/file2.html
+  | sed 's/Invalid.*//g' > src/html/file2.html
 
 curl https://www.friedensschule.de/fileadmin/user_upload/Vertretungsplan_Ablage/subst_003.htm \
-  | sed 's/Invalid.*//g' > data/file3.html
+  | sed 's/Invalid.*//g' > src/html/file3.html
 
  # cp ./data/file1.html ./data/file2.html
 
 # Input files
-files=("./data/file1.html" "./data/file2.html" "./data/file3.html")
+files=("./src/html/file1.html" "./src/html/file2.html" "./src/html/file3.html")
 
 # Create a new HTML file with a new head and combined body
-output="./index.html"
+output="./src/html/index.html"
 
 # Start with the head tag
 echo "<!DOCTYPE html>" > $output
