@@ -1,0 +1,61 @@
+:root {
+  /** Dark theme primary colors */ 
+  --color-primary-a0: #5eedcf;
+  --color-primary-a10: #77efd4;
+  --color-primary-a20: #8cf2d9;
+  --color-primary-a30: #9ff4df;
+  --color-primary-a40: #b0f6e4;
+  --color-primary-a50: #c1f8e9;
+
+  /** Dark theme surface colors */
+  --color-surface-a0: #121212;
+  --color-surface-a10: #282828;
+  --color-surface-a20: #3f3f3f;
+  --color-surface-a30: #575757;
+  --color-surface-a40: #717171;
+  --color-surface-a50: #8b8b8b;
+}
+
+body {
+  color: var(--color-primary-a50); 
+  background-color: var(--color-surface-a0); 
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: Arial, sans-serif;
+}
+
+.mon_title, table {
+  background-color: var(--color-surface-a10);
+  padding: 1rem;
+  margin: 0.5rem auto;
+  border-radius: 1rem;
+  width: fit-content;
+  white-space: nowrap;
+}
+.mon_title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.mon_list {
+  border-spacing: 0.6rem 0.4rem;
+  width: fit-content;
+}
+
+.mon_list>tbody {
+  padding: 1rem;
+}
+
+.mon_list>tbody>tr>td {
+  background-color: var(--color-surface-a20);
+  border-radius: 0.4rem;
+  padding: 0.1rem 0.3rem;
+}
+/*.odd {*/
+/*    background-color: var(--color-surface-a20);*/
+/*}*/
+/*.even {*/
+/*    background-color: var(--color-surface-a10);*/
+/*}*/
+
