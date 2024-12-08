@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+rm /usr/share/nginx/html/file*.html
 
 curl https://www.friedensschule.de/fileadmin/user_upload/Vertretungsplan_Ablage/subst_001.htm \
 | sed 's/Invalid.*//g' > /usr/share/nginx/html/file1.html
@@ -32,7 +34,9 @@ for file in "$@"; do
   # Extract content
   body_content=$(sed -n '/<center>/,/<center>/p' "$file" | sed '1d;$d' \
     | sed 's/<th class="list" align="center">Text<\/th>//g'\
+    | sed 's/<\/center>//g'\
     | sed 's/eigenverantwortliches/selber/g'\
+    | sed 's/Beginn\ in\ Jahrgangsklasse/ab\ Jg./g'\
     | sed 's/Klasse(n)/Klasse/g'\
     | sed 's/Vertreter/Ersatz/g'\
     | sed 's/<td class="list" align="center">&nbsp;<\/td><\/tr>/<\/tr>/g')

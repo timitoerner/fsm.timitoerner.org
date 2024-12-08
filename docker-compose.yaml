@@ -13,7 +13,7 @@ services:
       - ./src/html/style.css:/usr/share/nginx/html/style.css
     environment:
       - CRON_TZ=UTC
-    command: sh -c "cat /etc/cron.d/cronfile >> /var/spool/cron/crontabs/root && crond && nginx -g 'daemon off;'"
+    command: apk add --no-cache bash && sh -c "cat /etc/cron.d/cronfile >> /var/spool/cron/crontabs/root && crond && nginx -g 'daemon off;'"
     ports:
       - 80:80
       - 443:443
