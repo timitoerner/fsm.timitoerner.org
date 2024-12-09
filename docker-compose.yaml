@@ -2,6 +2,9 @@ services:
   website:
     build: .
     container_name: fsm-nginx
+    volumes:
+      - /keys/certificate.key:/etc/nginx/tls/certificate.key:ro
+      - /keys/certificate.crt:/etc/nginx/tls/certificate.crt:ro
     ports:
       - 80:80
       - 443:443
