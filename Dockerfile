@@ -14,6 +14,7 @@ COPY ./src/html/style.css /usr/share/nginx/html/style.css
 # Set up the cron job and start cron daemon
 RUN cat /etc/cron.d/cronfile >> /var/spool/cron/crontabs/root;
 RUN crond;
+RUN /bin/bash /script.sh;
 
 # Expose HTTP and HTTPS
 EXPOSE 80 443
