@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
 # Install bash for the script to function
-RUN apk update && apk add --no-cache bash
+RUN apk update && apk add --no-cache bash;
 
 # Copy nginx configuration cronfile, script and static assets
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
@@ -12,11 +12,11 @@ COPY ./src/html/app.js /usr/share/nginx/html/app.js
 COPY ./src/html/style.css /usr/share/nginx/html/style.css
 
 # Set up the cron job and start cron daemon
-RUN cat /etc/cron.d/cronfile >> /var/spool/cron/crontabs/root && crond
-RUN /bin/bash /script.sh
+RUN cat /etc/cron.d/cronfile >> /var/spool/cron/crontabs/root;
+RUN crond;
 
 # Expose HTTP and HTTPS
 EXPOSE 80 443
 
 # Run nginx and cron in the foreground
-CMD ["sh", "-c", "nginx -g 'daemon off;'"]
+CMD ["sh", "-c", "crond && nginx -g 'daemon off;'" ]
