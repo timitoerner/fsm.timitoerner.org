@@ -56,8 +56,15 @@ function listSpecifiedClasses() {
   });
 }
 
+function replaceLongText() {
+  let html = document.getElementsByTagName("body").item(0).outerHTML;
+  html = html.replace("Beginn in Jahrgangsklasse", "ab Jg.");
+  document.getElementsByTagName("body").item(0).outerHTML = html
+}
+
 window.onload = function() {
   moveTextToArtColumn();
   listSpecifiedClasses();
+  replaceLongText();
   //listTeacher();
 };

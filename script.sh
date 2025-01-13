@@ -36,7 +36,6 @@ for file in "$@"; do
     | sed 's/<th class="list" align="center">Text<\/th>//g'\
     | sed 's/<\/center>//g'\
     | sed 's/eigenverantwortliches/selber/g'\
-    | sed 's/Beginn in Jahrgangsklasse/ab Jg./g'\
     | sed 's/Klasse(n)/Klasse/g'\
     | sed 's/Vertreter/Ersatz/g'\
     | sed 's/<td class="list" align="center">&nbsp;<\/td><\/tr>/<\/tr>/g')
