@@ -35,10 +35,6 @@ for file in "$@"; do
   body_content=$(sed -n '/<center>/,/<center>/p' "$file" | sed '1d;$d' \
     | sed 's/<th class="list" align="center">Text<\/th>//g'\
     | sed 's/<\/center>//g'\
-    | sed 's/eigenverantwortliches/selber/g'\
-    | sed 's/Klasse(n)/Klasse/g'\
-    | sed 's/Art/Info/g'\
-    | sed 's/Vertreter/Ersatz/g'\
     | sed 's/<td class="list" align="center">&nbsp;<\/td><\/tr>/<\/tr>/g')
   echo "$body_content" >> $output
 done

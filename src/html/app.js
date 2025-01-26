@@ -63,13 +63,49 @@ function replaceText() {
   document.body.innerHTML = document.body.innerHTML.replace(/Sozialwissenschaften/gi, "SOWI");
   document.body.innerHTML = document.body.innerHTML.replace(/Arbeitsgemeinschaft/gi, "AG");
   document.body.innerHTML = document.body.innerHTML.replace(/Stunde/g, "St.");
+  document.body.innerHTML = document.body.innerHTML.replace(/Art/g, "Info");
+  document.body.innerHTML = document.body.innerHTML.replace(/Vertreter/g, "Ersatz");
+  document.body.innerHTML = document.body.innerHTML.replace(/eigenverantwortliches/g, "selber");
+  document.body.innerHTML = document.body.innerHTML.replace(/Klassen\(n\)/g, "Klasse");
   document.body.innerHTML = document.body.innerHTML.replace(/Deutsch als Fremdsprache/gi, "Deutsch Fremd.");
   document.body.innerHTML = document.body.innerHTML.replace(/(\d) - (\d)/gi, "$1-$2");
 }
+
+function sumClassesUp() {
+  let trs = document.getElementsByTagName("tr");
+  for (let tr of trs) {
+    let firstCell = tr.cells[0];
+    firstCell.addEventListener("click", () => {
+      if (firstCell.style.maxWidth == "none") {
+        firstCell.style.maxWidth = "4rem";
+        firstCell.style.backgroundColor = "var(--color-surface-a20)";
+      }
+      else {
+        firstCell.style.maxWidth = "none";
+        firstCell.style.backgroundColor = "var(--color-surface-a40)";
+      }
+    });
+  }
+}
+
+function checkTableOverflow() {
+  const table = document.querySelector('.mon_list');
+
+  if (table.clientWidth > window.innerWidth) {
+    table.classList.add('overflow');
+  } else {
+    table.classList.remove('overflow');
+  }
+}
+
 
 window.onload = function() {
   moveTextToArtColumn();
   listSpecifiedClasses();
   replaceText();
+  sumClassesUp();
+  checkTableOverflow();
   //listTeacher();
 };
+
+window.addEventListener('resize', checkTableOverflow);

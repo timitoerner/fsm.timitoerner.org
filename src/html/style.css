@@ -52,6 +52,22 @@ body {
   border-radius: 0.4rem;
   padding: 0.1rem 0.3rem;
 }
+/*.mon_list>tbody>tr>td:nth-child(1) {*/
+/*  max-width: 4rem;*/
+/*  overflow: hidden;*/
+/*  white-space: nowrap;*/
+/*  text-overflow: ellipsis;*/
+/*}*/
+.mon_list>tbody>tr>td:nth-child(1):hover {
+  cursor: pointer;
+}
+
+.overflow>tbody>tr>td:nth-child(1) {
+  max-width: 4rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 /*.odd {*/
 /*    background-color: var(--color-surface-a20);*/
 /*}*/
