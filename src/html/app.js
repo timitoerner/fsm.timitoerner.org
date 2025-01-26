@@ -56,15 +56,17 @@ function listSpecifiedClasses() {
   });
 }
 
-function replaceLongText() {
-  let html = document.getElementsByTagName("body").item(0).outerHTML;
-  html = html.replace("Beginn in Jahrgangsklasse", "ab Jg.");
-  document.getElementsByTagName("body").item(0).outerHTML = html
+function replaceText() {
+  document.body.innerHTML = document.body.innerHTML.replace(/Beginn in Jahrgangsklasse/gi, "ab Jg.");
+  document.body.innerHTML = document.body.innerHTML.replace(/Beginn in Jahrgangsstufe/gi, "ab Jg.");
+  document.body.innerHTML = document.body.innerHTML.replace(/Naturwissenschaften/gi, "NW");
+  document.body.innerHTML = document.body.innerHTML.replace(/Sozialwissenschaften/gi, "SOWI");
+  document.body.innerHTML = document.body.innerHTML.replace(/Arbeitsgemeinschaft/gi, "AG");
 }
 
 window.onload = function() {
   moveTextToArtColumn();
   listSpecifiedClasses();
-  replaceLongText();
+  replaceText();
   //listTeacher();
 };
