@@ -62,6 +62,8 @@ function replaceText() {
   document.body.innerHTML = document.body.innerHTML.replace(/Naturwissenschaften/gi, "NW");
   document.body.innerHTML = document.body.innerHTML.replace(/Sozialwissenschaften/gi, "SOWI");
   document.body.innerHTML = document.body.innerHTML.replace(/Arbeitsgemeinschaft/gi, "AG");
+  document.body.innerHTML = document.body.innerHTML.replace(/Stunde/g, "St.");
+  document.body.innerHTML = document.body.innerHTML.replace(/Deutsch als Fremdsprache/gi, "Deutsch Fremd.");
   document.body.innerHTML = document.body.innerHTML.replace(/(\d) - (\d)/gi, "$1-$2");
 }
 
