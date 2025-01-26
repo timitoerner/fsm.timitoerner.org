@@ -66,9 +66,13 @@ function replaceText() {
   document.body.innerHTML = document.body.innerHTML.replace(/Art/g, "Info");
   document.body.innerHTML = document.body.innerHTML.replace(/Vertreter/g, "Ersatz");
   document.body.innerHTML = document.body.innerHTML.replace(/eigenverantwortliches/g, "selber");
-  document.body.innerHTML = document.body.innerHTML.replace(/Klassen\(n\)/g, "Klasse");
+  document.body.innerHTML = document.body.innerHTML.replace(/Klasse\(n\)/g, "Klasse");
   document.body.innerHTML = document.body.innerHTML.replace(/Deutsch als Fremdsprache/gi, "Deutsch Fremd.");
   document.body.innerHTML = document.body.innerHTML.replace(/(\d) - (\d)/gi, "$1-$2");
+}
+
+function _isTableOverflow() {
+  return document.querySelector('.mon_list').clientWidth > window.innerWidth;
 }
 
 function sumClassesUp() {
@@ -76,6 +80,9 @@ function sumClassesUp() {
   for (let tr of trs) {
     let firstCell = tr.cells[0];
     firstCell.addEventListener("click", () => {
+      if (!_isTableOverflow() || trs.item(0) == tr) {
+        return;
+      }
       if (firstCell.style.maxWidth == "none") {
         firstCell.style.maxWidth = "4rem";
         firstCell.style.backgroundColor = "var(--color-surface-a20)";
@@ -91,7 +98,7 @@ function sumClassesUp() {
 function checkTableOverflow() {
   const table = document.querySelector('.mon_list');
 
-  if (table.clientWidth > window.innerWidth) {
+  if (_isTableOverflow()) {
     table.classList.add('overflow');
   } else {
     table.classList.remove('overflow');
