@@ -37,6 +37,7 @@ for file in "$@"; do
     | sed 's/<\/center>//g'\
     | sed 's/eigenverantwortliches/selber/g'\
     | sed 's/Klasse(n)/Klasse/g'\
+    | sed 's/Art/Info/g'\
     | sed 's/Vertreter/Ersatz/g'\
     | sed 's/<td class="list" align="center">&nbsp;<\/td><\/tr>/<\/tr>/g')
   echo "$body_content" >> $output
