@@ -23,9 +23,16 @@ body {
   padding: 0;
   border: 0;
   font-family: Arial, sans-serif;
+  width: fit-content;
+  min-width: 100vw;
 }
 
-.mon_title, table {
+.heading {
+  display: flex;
+  justify-content: center;
+}
+
+.mon_title, .mon_list {
   background-color: var(--color-surface-a10);
   padding: 1rem;
   margin: 0.5rem auto;
@@ -36,6 +43,7 @@ body {
 .mon_title {
   font-size: 2rem;
   font-weight: bold;
+  margin: 0.5rem;
 }
 
 .mon_list {
@@ -52,22 +60,22 @@ body {
   border-radius: 0.4rem;
   padding: 0.1rem 0.3rem;
 }
-/*.mon_list>tbody>tr>td:nth-child(1) {*/
+.mon_list>tbody>tr>td:nth-child(1) {
+  max-width: 5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.mon_list>tbody>tr>td:nth-child(1):hover {
+  cursor: pointer;
+}
+
+/*.overflow>tbody>tr>td:nth-child(1) {*/
 /*  max-width: 4rem;*/
 /*  overflow: hidden;*/
 /*  white-space: nowrap;*/
 /*  text-overflow: ellipsis;*/
 /*}*/
-.mon_list>tbody>tr>td:nth-child(1):hover {
-  cursor: pointer;
-}
-
-.overflow>tbody>tr>td:nth-child(1) {
-  max-width: 4rem;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
 /*.odd {*/
 /*    background-color: var(--color-surface-a20);*/
 /*}*/

@@ -1,5 +1,4 @@
-// Function to move content from "Text" column to "Art" column
-function moveTextToArtColumn() {
+function moveTextToInfoColumn() {
   // Get all rows in the table (excluding the header row)
   const rows = document.querySelectorAll('.mon_list tr.list');
 
@@ -10,7 +9,7 @@ function moveTextToArtColumn() {
     // Skip rows that don't have the expected number of columns (in case of missing data)
     if (cells.length < 7) return;
 
-    // Move the content from the "Text" column (last cell) to the "Art" column (second-to-last cell)
+    // Move the content from the "Text" column (last cell) to the "Info" column (second-to-last cell)
     const textContent = cells[cells.length - 1].innerHTML;
     cells[cells.length - 2].innerHTML += "; " + textContent;
 
@@ -71,20 +70,17 @@ function replaceText() {
   document.body.innerHTML = document.body.innerHTML.replace(/(\d) - (\d)/gi, "$1-$2");
 }
 
-function _isTableOverflow() {
-  return document.querySelector('.mon_list').clientWidth > window.innerWidth;
-}
 
 function sumClassesUp() {
   let trs = document.getElementsByTagName("tr");
   for (let tr of trs) {
     let firstCell = tr.cells[0];
     firstCell.addEventListener("click", () => {
-      if (!_isTableOverflow() || trs.item(0) == tr) {
-        return;
-      }
+      
+      if (trs.item(0) == tr) return;
+
       if (firstCell.style.maxWidth == "none") {
-        firstCell.style.maxWidth = "4rem";
+        firstCell.style.maxWidth = "5rem";
         firstCell.style.backgroundColor = "var(--color-surface-a20)";
       }
       else {
@@ -95,24 +91,12 @@ function sumClassesUp() {
   }
 }
 
-function checkTableOverflow() {
-  const table = document.querySelector('.mon_list');
-
-  if (_isTableOverflow()) {
-    table.classList.add('overflow');
-  } else {
-    table.classList.remove('overflow');
-  }
-}
-
 
 window.onload = function() {
-  moveTextToArtColumn();
+  moveTextToInfoColumn();
   listSpecifiedClasses();
   replaceText();
   sumClassesUp();
-  checkTableOverflow();
   //listTeacher();
 };
 
-window.addEventListener('resize', checkTableOverflow);

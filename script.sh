@@ -20,7 +20,7 @@ echo "<!DOCTYPE html>" > $output
   echo "<html>"
   echo "<head>"
   echo "  <meta charset='ISO-8859-1'>"
-  echo "  <meta name='viewport' content='width=device-width, initial-scale=1.0'>"
+  echo "  <meta name='viewport' content='width=device-width, minimal-scale=1.0'>"
   echo "  <link rel='preload stylesheet' as='style' href='style.css' >"
   echo "  <title>Vertretungsplan</title>"
   echo "</head>"
@@ -35,6 +35,8 @@ for file in "$@"; do
   body_content=$(sed -n '/<center>/,/<center>/p' "$file" | sed '1d;$d' \
     | sed 's/<th class="list" align="center">Text<\/th>//g'\
     | sed 's/<\/center>//g'\
+    | sed 's/<div class="mon_title">/<div class="heading"><div class="mon_title">/g'\
+    | sed 's/<table class="mon_list" >/<\/div><table class="mon_list" >/g'\
     | sed 's/<td class="list" align="center">&nbsp;<\/td><\/tr>/<\/tr>/g')
   echo "$body_content" >> $output
 done
@@ -43,6 +45,7 @@ done
 # echo "</center>" >> $output
 {
   echo "<script src='app.js'></script>"
+  echo "<h2 id='disclaimer' style='text-align:center; margin: 0.5rem auto'>Diese Website ist nicht offiziell von der Schule und somit auch nicht verantwortlich f&uuml;r eventuelle Misverst&auml;ndnisse!</h1>"
   echo "<p style='text-align: center; margin: 0.5rem auto'>$(TZ='Europe/Berlin' date)</p>"
   echo "</body>"
   echo "</html>"
