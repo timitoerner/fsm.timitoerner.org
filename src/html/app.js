@@ -18,30 +18,6 @@ function moveTextToInfoColumn() {
   });
 }
 
-function listTeacher() {
-  let allTables = document.getElementsByClassName("mon_list");
-
-  for (let i = 0; i < allTables.length; i++) {
-    let teacherParagraph = document.createElement("p");
-
-    let cells = document.querySelectorAll(".mon_list tr td");
-
-    for (let j = 0; j < cells.length; j++) {
-      if (j > allTables.item(i).firstElementChild.childElementCount * 6) break;
-      if (!(j % 6)) {
-        let cell = cells.item(j + 2);
-
-        if (teacherParagraph.innerHTML.slice(-cell.innerHTML.length - 2, teacherParagraph.innerHTML.length) == cell.innerHTML + ", ") continue;
-
-        teacherParagraph.innerHTML += cell.innerHTML + ", ";
-      }
-    }
-
-    allTables.item(i).before(teacherParagraph);
-
-  }
-}
-
 function listSpecifiedClasses() {
   if (window.location.search == "") return;
 
@@ -97,6 +73,5 @@ window.onload = function() {
   listSpecifiedClasses();
   replaceText();
   sumClassesUp();
-  //listTeacher();
 };
 
