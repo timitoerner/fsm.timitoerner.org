@@ -18,18 +18,6 @@ function moveTextToInfoColumn() {
   });
 }
 
-function listSpecifiedClasses() {
-  if (window.location.search == "") return;
-
-  const urlParams = new URLSearchParams(window.location.search);
-
-  const rows = document.querySelectorAll('.mon_list tr.list');
-
-  rows.forEach(row => {
-    if (urlParams.has(row.firstElementChild.innerHTML) || row.firstElementChild.nodeName == "TH") return;
-    row.remove();
-  });
-}
 
 function replaceText() {
   document.body.innerHTML = document.body.innerHTML.replace(/Beginn in Jahrgangsklasse/gi, "ab Jg.");
@@ -67,11 +55,76 @@ function sumClassesUp() {
   }
 }
 
+function listSpecifiedClasses() {
+  // if none specified -> return
+  if (window.location.search == "") return;
+
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const rows = document.querySelectorAll('.mon_list tr.list');
+
+  // go throught all rows and all specified classes and remove the not specified classes 
+  rows.forEach(row => {
+    // uses variable because removes after ALL keys are checked an NONE match
+    let shouldKeep = false;
+
+    for (const key of urlParams.keys()) {
+      // checks if specified class (key) is present in row
+      if (row.firstElementChild.innerHTML.includes(key) ||
+        // exclude table haeders
+        row.firstElementChild.nodeName == "TH" ||
+        // exclude 'Deutsch als Fremdsprache'
+        row.firstElementChild.innerHTML == "DAZ") {
+        shouldKeep = true;
+      }
+    }
+    if (!shouldKeep) {
+      row.remove();
+    }
+  });
+}
+
+
+function classButtons() {
+  // classes that will be displayed
+  let displayClasses = ["5", "6", "7", "8", "9", "10", "EF", "Q1", "Q2"];
+  // the url param filters for the specific class
+  let filterClasses = ["5/&5.&", "/6&6.&", "7.&", "8.&", "9.&", "10.&", "EF&11.&", "Q1&", "Q2&"];
+
+  document.body.insertAdjacentHTML("afterbegin", "<div class='classes'></div>")
+  document.body.insertAdjacentHTML("afterbegin", "<h3 style='text-align: center'>Die spezifische Stufenauswahl ist noch nicht stark gestestet und kann Fehler enthalten!!!<h3>")
+  for (let i = 0; i < displayClasses.length; i++) {
+    let disClas = displayClasses[i];
+    let filClas = filterClasses[i];
+
+    document.getElementsByClassName("classes").item(0).insertAdjacentHTML("beforeend", "<div>" + disClas + "</div>");
+
+    document.getElementsByClassName("classes").item(0).lastChild.addEventListener("click", () => {
+      if (location.search.includes(filClas)) {
+        location.search = location.search.replace(filClas, "");
+      }
+      else {
+        location.search += filClas;
+      }
+    }
+    )
+
+    
+    if (location.search.includes(filClas)) {
+      document.getElementsByClassName("classes").item(0).lastChild.style.backgroundColor = "var(--color-surface-a20)";
+    }
+    else {
+      document.getElementsByClassName("classes").item(0).lastChild.style.backgroundColor = "var(--color-surface-a10)";
+    }
+
+  }
+}
 
 window.onload = function() {
   moveTextToInfoColumn();
   listSpecifiedClasses();
   replaceText();
   sumClassesUp();
+  classButtons();
 };
 
