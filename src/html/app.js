@@ -45,21 +45,39 @@ function replaceText() {
 }
 
 
-function sumClassesUp() {
-  let trs = document.getElementsByTagName("tr");
-  for (let tr of trs) {
-    let firstCell = tr.cells[0];
-    firstCell.addEventListener("click", () => {
-      
-      if (trs.item(0) == tr) return;
+function sumColumnUp(index, maxWidth) {
+  const style = document.createElement("style");
+  style.appendChild(document.createTextNode(`.mon_list>tbody>tr>td:nth-child(${index + 1}):hover { cursor: pointer; }`));
+  style.appendChild(document.createTextNode(`.mon_list>tbody>tr>td:nth-child(${index + 1}) { max-width: ${maxWidth}rem }`));
+  document.head.appendChild(style);
 
+
+
+  // get all table rows
+  let trs = document.getElementsByTagName("tr");
+
+  // loop through every row 
+  for (let tr of trs) {
+    // keep track of cell at place {index}
+    let firstCell = tr.cells[index];
+
+
+    firstCell.addEventListener("click", () => {
+      // return if it is the table header
+      if (tr.cells[0].tagName == "TH") return;
+
+      // if width is not set, set it
+      // and also change the color
       if (firstCell.style.maxWidth == "none") {
-        firstCell.style.maxWidth = "5rem";
+        firstCell.style.maxWidth = maxWidth.toString() + "rem";
         firstCell.style.backgroundColor = "var(--color-surface-a20)";
+        firstCell.style.color = "var(--color-primary-a50)";
       }
+      // and if it is than set it to none
       else {
         firstCell.style.maxWidth = "none";
-        firstCell.style.backgroundColor = "var(--color-surface-a40)";
+        firstCell.style.backgroundColor = "var(--color-primary-a50)";
+        firstCell.style.color = "var(--color-surface-a20)";
       }
     });
   }
@@ -73,7 +91,7 @@ function listSpecifiedClasses() {
 
   const rows = document.querySelectorAll('.mon_list tr.list');
 
-  // go throught all rows and all specified classes and remove the not specified classes 
+  // go through all rows and all specified classes and remove the not specified classes 
   rows.forEach(row => {
     // uses variable because removes after ALL keys are checked an NONE match
     let shouldKeep = false;
@@ -96,35 +114,46 @@ function listSpecifiedClasses() {
 
 
 function classButtons() {
-  // classes that will be displayed
+  // grades that will be displayed
   let displayClasses = ["5", "6", "7", "8", "9", "10", "EF", "Q1", "Q2"];
-  // the url param filters for the specific class
+  // the url param filters for the specific grade
   let filterClasses = ["5/&5.&", "/6&6.&", "7.&", "8.&", "9.&", "10.&", "EF&11.&", "Q1&", "Q2&"];
 
+  // the parent div for the clickable filters
   document.body.insertAdjacentHTML("afterbegin", "<div class='classes'></div>")
+  // disclaimer
   document.body.insertAdjacentHTML("afterbegin", "<h3 style='text-align: center'>Die spezifische Stufenauswahl ist noch nicht stark gestestet und kann Fehler enthalten!!!<h3>")
+  // go through all grades with an index
   for (let i = 0; i < displayClasses.length; i++) {
+    // keep track of current grade
     let disClas = displayClasses[i];
     let filClas = filterClasses[i];
 
+    //make new div with grade inside
     document.getElementsByClassName("classes").item(0).insertAdjacentHTML("beforeend", "<div>" + disClas + "</div>");
 
+    // make the grades clickable by adding the filter grade to the url params or removing it
     document.getElementsByClassName("classes").item(0).lastChild.addEventListener("click", () => {
       if (location.search.includes(filClas)) {
+        // remove filter grade
         location.search = location.search.replace(filClas, "");
       }
       else {
+        // add filter grade
         location.search += filClas;
       }
     }
     )
 
     
+    // make the specified grades pop out by switching colors
     if (location.search.includes(filClas)) {
-      document.getElementsByClassName("classes").item(0).lastChild.style.backgroundColor = "var(--color-surface-a20)";
+      document.getElementsByClassName("classes").item(0).lastChild.style.backgroundColor = "var(--color-primary-a50)";
+      document.getElementsByClassName("classes").item(0).lastChild.style.color = "var(--color-surface-a10)";
     }
     else {
       document.getElementsByClassName("classes").item(0).lastChild.style.backgroundColor = "var(--color-surface-a10)";
+      document.getElementsByClassName("classes").item(0).lastChild.style.color = "var(--color-primary-a50)";
     }
 
   }
@@ -134,7 +163,9 @@ window.onload = function() {
   moveTextToInfoColumn();
   listSpecifiedClasses();
   replaceText();
-  sumClassesUp();
+  sumColumnUp(0, 5);
+  sumColumnUp(3, 10);
+  sumColumnUp(5, 10);
   classButtons();
 };
 

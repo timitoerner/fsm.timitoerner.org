@@ -59,15 +59,10 @@ body {
   background-color: var(--color-surface-a20);
   border-radius: 0.4rem;
   padding: 0.1rem 0.3rem;
-}
-.mon_list>tbody>tr>td:nth-child(1) {
-  max-width: 5rem;
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-.mon_list>tbody>tr>td:nth-child(1):hover {
-  cursor: pointer;
 }
 
 .classes {
@@ -81,6 +76,7 @@ body {
   height: 3rem;
   margin: 0.5rem;
   border-radius: 1rem;
+  font-weight: bold;
 
   display: flex;
   justify-content: center;
@@ -89,17 +85,3 @@ body {
 .classes>div:hover {
   cursor: pointer;
 }
-
-/*.overflow>tbody>tr>td:nth-child(1) {*/
-/*  max-width: 4rem;*/
-/*  overflow: hidden;*/
-/*  white-space: nowrap;*/
-/*  text-overflow: ellipsis;*/
-/*}*/
-/*.odd {*/
-/*    background-color: var(--color-surface-a20);*/
-/*}*/
-/*.even {*/
-/*    background-color: var(--color-surface-a10);*/
-/*}*/
-
