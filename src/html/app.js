@@ -20,18 +20,28 @@ function moveTextToInfoColumn() {
 
 
 function replaceText() {
-  document.body.innerHTML = document.body.innerHTML.replace(/Beginn in Jahrgangsklasse/gi, "ab Jg.");
-  document.body.innerHTML = document.body.innerHTML.replace(/Beginn in Jahrgangsstufe/gi, "ab Jg.");
-  document.body.innerHTML = document.body.innerHTML.replace(/Naturwissenschaften/gi, "NW");
-  document.body.innerHTML = document.body.innerHTML.replace(/Sozialwissenschaften/gi, "SOWI");
-  document.body.innerHTML = document.body.innerHTML.replace(/Arbeitsgemeinschaft/gi, "AG");
-  document.body.innerHTML = document.body.innerHTML.replace(/Stunde/g, "St.");
-  document.body.innerHTML = document.body.innerHTML.replace(/Art/g, "Info");
-  document.body.innerHTML = document.body.innerHTML.replace(/Vertreter/g, "Ersatz");
-  document.body.innerHTML = document.body.innerHTML.replace(/eigenverantwortliches/g, "selber");
-  document.body.innerHTML = document.body.innerHTML.replace(/Klasse\(n\)/g, "Klasse");
-  document.body.innerHTML = document.body.innerHTML.replace(/Deutsch als Fremdsprache/gi, "Deutsch Fremd.");
-  document.body.innerHTML = document.body.innerHTML.replace(/(\d) - (\d)/gi, "$1-$2");
+  let replacements = {
+    "Beginn in Jahrgangsklasse": "ab Jg.",
+    "Beginn in Jahrgangsstufe": "ab Jg.",
+    "Naturwissenschaften": "NW",
+    "Mathematik": "Mathe",
+    "Individuelle Lernzeit": "ILZ",
+    "Religionslehre": "Religion",
+    "Sozialwissenschaften": "SOWI",
+    "Arbeitsgemeinschaft": "AG",
+    "Angleichstunde": "Angleichst.",
+    "bungsstunde": "bungsst.",
+    "Stunde": "St.",
+    "Art": "Info",
+    "Vertreter": "Ersatz",
+    "eigenverantwortliches": "selber",
+    "Deutsch als Fremdsprache": "Deutsch Fremd.",
+    "([0-9]) - ([0-9])": "$1-$2",
+  };
+  for (const [key, value] of Object.entries(replacements)) {
+    const regex = new RegExp(key, 'gi');
+    document.body.innerHTML = document.body.innerHTML.replace(regex, value);
+  }
 }
 
 
