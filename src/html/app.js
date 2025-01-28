@@ -117,7 +117,7 @@ function classButtons() {
   // grades that will be displayed
   let displayClasses = ["5", "6", "7", "8", "9", "10", "EF", "Q1", "Q2"];
   // the url param filters for the specific grade
-  let filterClasses = ["5/&5.&", "/6&6.&", "7.&", "8.&", "9.&", "10.&", "EF&11.&", "Q1&", "Q2&"];
+  let filterClasses = ["5/&5.&", "/6&6.&", "7/&7.&", "/8&8.&", "9.&", "10.&", "EF&11.&", "Q1&", "Q2&"];
 
   // the parent div for the clickable filters
   document.body.insertAdjacentHTML("afterbegin", "<div class='classes'></div>")
