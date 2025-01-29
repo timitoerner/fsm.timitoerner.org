@@ -1,18 +1,18 @@
 #!/bin/bash
 
-rm /usr/share/nginx/html/file*.html
+rm src/html/file*.html
 
 curl https://www.friedensschule.de/fileadmin/user_upload/Vertretungsplan_Ablage/subst_001.htm \
-| sed 's/Invalid.*//g' > /usr/share/nginx/html/file1.html
+| sed 's/Invalid.*//g' > src/html/file1.html
 
 curl https://www.friedensschule.de/fileadmin/user_upload/Vertretungsplan_Ablage/subst_002.htm \
-| sed 's/Invalid.*//g' > /usr/share/nginx/html/file2.html
+| sed 's/Invalid.*//g' > src/html/file2.html
 
 curl https://www.friedensschule.de/fileadmin/user_upload/Vertretungsplan_Ablage/subst_003.htm \
-| sed 's/Invalid.*//g' > /usr/share/nginx/html/file3.html
+| sed 's/Invalid.*//g' > src/html/file3.html
 
 # Create a new HTML file with a new head and combined body
-output="/usr/share/nginx/html/index.html"
+output="src/html/index.html"
 
 # Start with the head tag
 echo "<!DOCTYPE html>" > $output
@@ -29,7 +29,7 @@ echo "<!DOCTYPE html>" > $output
 
 # Extract body content from each file and append to the new body
 # Input files
-set -- "/usr/share/nginx/html/file1.html" "/usr/share/nginx/html/file2.html" "/usr/share/nginx/html/file3.html"
+set -- "src/html/file1.html" "src/html/file2.html" "src/html/file3.html"
 for file in "$@"; do
   # Extract content
   body_content=$(sed -n '/<center>/,/<center>/p' "$file" | sed '1d;$d' \
