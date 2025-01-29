@@ -2,10 +2,10 @@ name: Deploy to GitHub Pages
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # This runs the workflow every minute
+    - cron: '*/5 * * * *'
   push:
     branches:
-      - main  # Change this to your default branch if it's different
+      - master
 
 jobs:
   deploy:
@@ -16,10 +16,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run script.sh
-        run: bash script.sh  # Make sure script.sh is executable
-
+        run: bash script.sh  
+        
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./src/html  # Change this to your static content directory
+          publish_dir: ./src/html
