@@ -1,0 +1,25 @@
+name: Deploy to GitHub Pages
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # This runs the workflow every minute
+  push:
+    branches:
+      - main  # Change this to your default branch if it's different
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run script.sh
+        run: bash script.sh  # Make sure script.sh is executable
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./src/html  # Change this to your static content directory
