@@ -61,7 +61,7 @@ function sumColumnUp(index, maxWidth) {
     // keep track of cell at place {index}
     let firstCell = tr.cells[index];
 
-    if (!firstCell) return;
+    if (!firstCell) continue;
 
     firstCell.addEventListener("click", () => {
       // return if it is the table header
