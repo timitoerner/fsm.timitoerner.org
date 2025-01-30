@@ -67,7 +67,7 @@ function sumColumnUp(index, maxWidth) {
     indexCell.addEventListener("click", () => {
       // return if it is the table header
       if (indexCell.tagName == "TH" ||
-          !indexCell.parentElement.parentElement.classList.contains("mon_list")) return;
+          !indexCell.parentElement.parentElement.parentElement.classList.contains("mon_list")) return;
 
       // if width is not set, set it
       // and also change the color
