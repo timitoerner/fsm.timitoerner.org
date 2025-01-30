@@ -59,26 +59,28 @@ function sumColumnUp(index, maxWidth) {
   // loop through every row 
   for (let tr of trs) {
     // keep track of cell at place {index}
-    let firstCell = tr.cells[index];
+    let indexCell = tr.cells[index];
+    
+    // continue if cell does not exist
+    if (!indexCell) continue;
 
-    if (!firstCell) continue;
-
-    firstCell.addEventListener("click", () => {
+    indexCell.addEventListener("click", () => {
       // return if it is the table header
-      if (tr.cells[0].tagName == "TH") return;
+      if (indexCell.tagName == "TH" ||
+          !indexCell.parentElement.classList.contains("mon_list")) return;
 
       // if width is not set, set it
       // and also change the color
-      if (firstCell.style.maxWidth == "none") {
-        firstCell.style.maxWidth = maxWidth.toString() + "rem";
-        firstCell.style.backgroundColor = "var(--color-surface-a20)";
-        firstCell.style.color = "var(--color-primary-a50)";
+      if (indexCell.style.maxWidth == "none") {
+        indexCell.style.maxWidth = maxWidth.toString() + "rem";
+        indexCell.style.backgroundColor = "var(--color-surface-a20)";
+        indexCell.style.color = "var(--color-primary-a50)";
       }
       // and if it is than set it to none
       else {
-        firstCell.style.maxWidth = "none";
-        firstCell.style.backgroundColor = "var(--color-primary-a50)";
-        firstCell.style.color = "var(--color-surface-a20)";
+        indexCell.style.maxWidth = "none";
+        indexCell.style.backgroundColor = "var(--color-primary-a50)";
+        indexCell.style.color = "var(--color-surface-a20)";
       }
     });
   }
