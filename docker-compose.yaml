@@ -2,10 +2,23 @@ services:
   website:
     build: .
     container_name: fsm-nginx
-    volumes:
-      - /keys/certificate.key:/etc/nginx/tls/certificate.key:ro
-      - /keys/certificate.crt:/etc/nginx/tls/certificate.crt:ro
-    ports:
-      - 80:80
-      - 443:443
+    #volumes:
+      #- /keys/certificate.key:/etc/nginx/tls/certificate.key:ro
+      #- /keys/certificate.crt:/etc/nginx/tls/certificate.crt:ro
+    #ports:
+      #- 80:80
+      #- 443:443
+    networks:
+      - frontend
+    labels:
+      - traefik.enable=true
+
+      - traefik.http.routers.fsm-https.tls=true
+      - traefik.http.routers.fsm-https.tls.certresolver=cloudflare
+      - traefik.http.routers.fsm-https.entrypoints=https
+      - traefik.http.routers.fsm-https.rule=Host("fsm.timitoerner.org")
     restart: always
+
+networks:
+  frontend:
+    external: true
