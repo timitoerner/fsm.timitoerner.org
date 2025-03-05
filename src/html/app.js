@@ -125,7 +125,7 @@ function classButtons() {
   // the parent div for the clickable filters
   document.body.insertAdjacentHTML("afterbegin", "<div class='classes'></div>")
   // disclaimer
-  document.body.insertAdjacentHTML("afterbegin", "<h3 style='text-align: center'>Die spezifische Stufenauswahl ist noch nicht stark gestestet und kann Fehler enthalten!!!<h3>")
+  //document.body.insertAdjacentHTML("afterbegin", "<h3 style='text-align: center'>Die spezifische Stufenauswahl ist noch nicht stark gestestet und kann Fehler enthalten!!!<h3>")
   // go through all grades with an index
   for (let i = 0; i < displayClasses.length; i++) {
     // keep track of current grade
