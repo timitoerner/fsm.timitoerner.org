@@ -46,7 +46,7 @@ done
 {
   echo "<script src='app.js'></script>"
   echo "<h2 id='disclaimer' style='text-align:center; margin: 0.5rem auto'>Diese Website ist nicht offiziell von der Schule und somit auch nicht verantwortlich f&uuml;r eventuelle Missverst&auml;ndnisse!</h1>"
-  echo "<p style='text-align: center; margin: 0.5rem auto'>$(TZ='Europe/Berlin' date)</p>"
+  echo "<h4 style='text-align: center; margin: 0.5rem auto'>$(TZ='Europe/Berlin' date)</h4>"
   echo "</body>"
   echo "</html>"
 } >> $output

@@ -27,9 +27,15 @@ body {
   min-width: 100vw;
 }
 
+p {
+  display: none;
+}
+
 .heading {
   display: flex;
   justify-content: center;
+  flex-flow: column;
+  align-items: center;
 }
 
 .mon_title, .mon_list {
@@ -69,6 +75,7 @@ body {
   display: flex;
   justify-content: center;    
   flex-wrap: wrap;
+  margin-top: 1rem;
 }
 .classes>div {
   background-color: var(--color-surface-a10);
