@@ -8,17 +8,17 @@ services:
     #ports:
       #- 80:80
       #- 443:443
-    networks:
-      - frontend
-    labels:
-      - traefik.enable=true
+    #networks:
+    #  - frontend
+    #labels:
+    #  - traefik.enable=true
 
-      - traefik.http.routers.fsm-https.tls=true
-      - traefik.http.routers.fsm-https.tls.certresolver=cloudflare
-      - traefik.http.routers.fsm-https.entrypoints=https
-      - traefik.http.routers.fsm-https.rule=Host("fsm.timitoerner.org")
+    #  - traefik.http.routers.fsm-https.tls=true
+    #  - traefik.http.routers.fsm-https.tls.certresolver=cloudflare
+    #  - traefik.http.routers.fsm-https.entrypoints=https
+    #  - traefik.http.routers.fsm-https.rule=Host("fsm.timitoerner.org")
     restart: always
 
-networks:
-  frontend:
-    external: true
+#networks:
+#  frontend:
+#    external: true
