@@ -17,7 +17,7 @@ output="/usr/share/nginx/html/index.html"
 # Start with the head tag
 echo "<!DOCTYPE html>" > $output
 {
-  echo "<html>"
+  echo "<html lang='de'>"
   echo "<head>"
   echo "  <meta charset='ISO-8859-1'>"
   echo "  <meta name='viewport' content='width=device-width, minimal-scale=1.0'>"
