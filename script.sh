@@ -22,6 +22,7 @@ echo "<!DOCTYPE html>" > $output
   echo "  <meta charset='ISO-8859-1'>"
   echo "  <meta name='viewport' content='width=device-width, minimal-scale=1.0'>"
   echo "  <link rel='preload stylesheet' as='style' href='style.css' >"
+  echo "  <link rel='icon' type='image/svg' href='./timetable-icon.svg'>"
   echo "  <title>Vertretungsplan</title>"
   echo "</head>"
   echo "<body>"
