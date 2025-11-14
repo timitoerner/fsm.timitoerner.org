@@ -27,6 +27,7 @@ function replaceText() {
     "Mathematik": "Mathe",
     "Individuelle Lernzeit": "ILZ",
     "Religionslehre": "Religion",
+    "Erziehungswissenschaft": "Pädagogik",
     "Sozialwissenschaften": "SOWI",
     "Arbeitsgemeinschaft": "AG",
     "Angleichstunde": "Angleichst.",
