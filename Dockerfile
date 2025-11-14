@@ -8,8 +8,9 @@ COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 COPY ./cronfile /etc/cron.d/cronfile
 COPY ./script.sh /script.sh
-COPY ./src/html/app.js /usr/share/nginx/html/app.js
-COPY ./src/html/style.css /usr/share/nginx/html/style.css
+#COPY ./src/html/app.js /usr/share/nginx/html/app.js
+#COPY ./src/html/style.css /usr/share/nginx/html/style.css
+COPY ./src/html/* /usr/share/nginx/html/
 
 # Set up the cron job and start cron daemon
 RUN cat /etc/cron.d/cronfile >> /var/spool/cron/crontabs/root;
