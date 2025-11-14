@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
 # Install bash for the script to function
-RUN apk update && apk add --no-cache bash;
+RUN apk update && apk add --no-cache bash grep pcre;
 
 # Copy nginx configuration cronfile, script and static assets
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
