@@ -98,3 +98,7 @@ body {
 font {
   display: none;
 }
+
+a {
+  color: var(--color-primary-a50);
+}
