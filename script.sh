@@ -61,6 +61,7 @@ done
   echo "<h2 id='disclaimer' style='text-align:center; margin: 0.5rem auto'>Diese Website ist nicht offiziell von der Schule und somit auch nicht verantwortlich f&uuml;r eventuelle Missverst&auml;ndnisse!</h1>"
   echo "<h4 style='text-align: center; margin: 0.5rem auto'>$(TZ='Europe/Berlin' date)</h4>"
   echo "<h4 style='text-align: center; margin: 0.5rem auto'><a href='https://github.com/timitoerner/fsm.timitoerner.org' target='_blank'>Source Code</a></h4>"
+  echo "<h1 style='text-align: center; margin: 0.5rem auto'><a href='https://www.paypal.me/timotheus4910' target='_blank' style='text-decoration: none;'>Mich unterst&uuml;tzen! 	&#128154;</a></h4>"
   echo "</body>"
   echo "</html>"
 } >> $output
