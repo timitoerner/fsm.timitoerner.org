@@ -170,7 +170,7 @@ function addSupportButtons() {
       document.getElementsByClassName("support-text").item(0).style.display = "flex";
       document.getElementsByClassName("support").item(0).lastChild.style.backgroundColor = "var(--color-primary-a50)";
       document.getElementsByClassName("support").item(0).lastChild.style.color = "var(--color-surface-a10)";
-      window.scrollTo(0, document.body.scrollHeight);
+      window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
     } 
     else {
       document.getElementsByClassName("support-text").item(0).style.display = "none";
