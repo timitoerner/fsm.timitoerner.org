@@ -95,6 +95,51 @@ body {
   text-align: center;
 }
 
+.support {
+  display: flex;
+  justify-content: center;
+}
+
+.support h1 {
+  background-color: var(--color-surface-a10);
+  padding: 1rem;
+  border-radius: 1rem;
+  width: fit-content;
+  white-space: nowrap;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.support-text {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.support-text p {
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.support-text div {
+  display: flex;
+  justify-content: center;
+}
+
+.support-text div a {
+  background-color: var(--color-surface-a10);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.support-text div a svg {
+  width: 8rem;
+  height: 2rem;
+}
+
 font {
   display: none;
 }
