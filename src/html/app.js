@@ -163,6 +163,23 @@ function classButtons() {
   }
 }
 
+function addSupportButtons() {
+  document.getElementsByClassName("support-text").item(0).style.display = "none";
+  document.getElementsByClassName("support").item(0).addEventListener("click", () => {
+    if (document.getElementsByClassName("support-text").item(0).style.display == "none") {
+      document.getElementsByClassName("support-text").item(0).style.display = "flex";
+      document.getElementsByClassName("support").item(0).lastChild.style.backgroundColor = "var(--color-primary-a50)";
+      document.getElementsByClassName("support").item(0).lastChild.style.color = "var(--color-surface-a10)";
+      window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+    } 
+    else {
+      document.getElementsByClassName("support-text").item(0).style.display = "none";
+      document.getElementsByClassName("support").item(0).lastChild.style.backgroundColor = "var(--color-surface-a10)";
+      document.getElementsByClassName("support").item(0).lastChild.style.color = "var(--color-primary-a50)";
+    }
+  });
+}
+
 window.onload = function() {
   moveTextToInfoColumn();
   listSpecifiedClasses();
@@ -171,5 +188,6 @@ window.onload = function() {
   sumColumnUp(3, 10);
   sumColumnUp(5, 10);
   classButtons();
+  addSupportButtons();
 };
 
