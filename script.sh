@@ -22,7 +22,7 @@ echo "<!DOCTYPE html>" > $output
   echo "  <meta charset='ISO-8859-1'>"
   echo "  <meta name='viewport' content='width=device-width, minimal-scale=1.0'>"
   echo "  <meta http-equiv='cache-control' content='no-cache'>"
-  echo "  <link rel='preload stylesheet' as='style' href='style.css?$RANDOM$RANDOM' >"
+  echo "  <link rel='preload stylesheet' as='style' href='style.css?$RANDOM$RANDOM$RANDOM' >"
   echo "  <link rel='icon' type='image/svg' href='./timetable-icon.svg'>"
   echo "  <title>Vertretungsplan</title>"
   echo "</head>"
@@ -58,7 +58,7 @@ done
 # Close the body and html tags
 # echo "</center>" >> $output
 {
-  echo "<script src='app.js'></script>"
+  echo "<script src='app.js?$RANDOM$RANDOM$RANDOM'></script>"
   echo "<h2 id='disclaimer' style='text-align:center; margin: 0.5rem auto'>Diese Website ist nicht offiziell von der Schule und somit auch nicht verantwortlich f&uuml;r eventuelle Missverst&auml;ndnisse!</h1>"
   echo "<h4 style='text-align: center; margin: 0.5rem auto'>$(TZ='Europe/Berlin' date)</h4>"
   echo "<h4 style='text-align: center; margin: 0.5rem auto'><a href='https://github.com/timitoerner/fsm.timitoerner.org' target='_blank'>Source Code</a> <a href='https://fsm.timitoerner.org/impressum.png' target='_blank'>Impressum</a></h4>"
