@@ -42,13 +42,13 @@ for file in "$@"; do
   # Extract content
   if ! grep -q "<title>404 Not Found</title>" "$file"; then
     body_content=$(sed -n '/<center>/,/<center>/p' "$file" | sed '1d;$d' \
-      | sed 's/<th class="list" align="center">Text<\/th>//g'\
-      | sed 's/<\/center>//g'\
-      | sed 's/<div class="mon_title">/<div class="heading"><div class="mon_title">/g'\
-      | sed 's/<table class="mon_list" >/<\/div><table class="mon_list" >/g'\
-      | sed 's/<td class="list" align="center">&nbsp;<\/td><\/tr>/<\/tr>/g' \
-      | sed 's/<p>//g' \
-      | sed 's/<font[*]+<\/font>//g')
+      | sed 's|<th class="list" align="center">Text</th>||g'\
+      | sed 's|</center>||g'\
+      | sed 's|<div class="mon_title">|<div class="heading"><div class="mon_title">|g'\
+      | sed 's|<table class="mon_list" >|</div><table class="mon_list" >|g'\
+      | sed 's|<td class="list" align="center">&nbsp;</td></tr>|</tr>|g' \
+      | sed 's|<p>||g' \
+      | sed 's|<font[*]+</font>||g')
     echo "$body_content" >> $output
     echo "<span class='last-updated'>Stand: ${dates[i]}</span>" >> $output
   fi
