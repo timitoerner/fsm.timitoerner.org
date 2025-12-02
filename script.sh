@@ -32,7 +32,7 @@ echo "<!DOCTYPE html>" > $output
 date1=$(grep -oP 'Stand:\s*\K[\d.]+\s*[\d:]+' /usr/share/nginx/html/file1.html)
 date2=$(grep -oP 'Stand:\s*\K[\d.]+\s*[\d:]+' /usr/share/nginx/html/file2.html)
 date3=$(grep -oP 'Stand:\s*\K[\d.]+\s*[\d:]+' /usr/share/nginx/html/file3.html)
-dates=("$date1" "$date2" "$date3")
+dates=(${date1/\ /,} ${date2/\ /,} ${date3/\ /,})
 
 # Extract body content from each file and append to the new body
 # Input files
@@ -42,15 +42,15 @@ for file in "$@"; do
   # Extract content
   if ! grep -q "<title>404 Not Found</title>" "$file"; then
     body_content=$(sed -n '/<center>/,/<center>/p' "$file" | sed '1d;$d' \
-      | sed 's|<th class="list" align="center">Text</th>||g'\
-      | sed 's|</center>||g'\
-      | sed 's|<div class="mon_title">|<div class="heading"><div class="mon_title">|g'\
-      | sed 's|<table class="mon_list" >|</div><table class="mon_list" >|g'\
+      | sed 's|<th class="list" align="center">Text</th>||g' \
+      | sed 's|</center>||g' \
+      | sed 's|<div class="mon_title">|<div class="heading"><div class="mon_title">|g' \
+      | sed 's|<table class="mon_list" >|</div><table class="mon_list" >|g' \
+      | sed 's|<table class="mon_list" >|<span class="last-updated">Stand: '${dates[i]}'</span><table class="mon_list" >|g' \
       | sed 's|<td class="list" align="center">&nbsp;</td></tr>|</tr>|g' \
       | sed 's|<p>||g' \
       | sed 's|<font[*]+</font>||g')
     echo "$body_content" >> $output
-    echo "<span class='last-updated'>Stand: ${dates[i]}</span>" >> $output
   fi
   ((i++))
 done
