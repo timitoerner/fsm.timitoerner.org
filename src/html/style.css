@@ -62,9 +62,7 @@ body {
   border-radius: 0.4rem;
   padding: 0.1rem 0.3rem;
 
-  overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .classes {

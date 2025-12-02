@@ -11,7 +11,7 @@ function moveTextToInfoColumn() {
 
     // Move the content from the "Text" column (last cell) to the "Info" column (second-to-last cell)
     const textContent = cells[cells.length - 1].innerHTML;
-    cells[cells.length - 2].innerHTML += "; " + textContent;
+    cells[cells.length - 2].innerHTML = cells[cells.length - 2].innerHTML.trim() + ((textContent.trim().replace("&nbsp;", "") == "") ? "" : "; " + textContent.trim().replace("&nbsp;", ""));
 
     // Optionally, clear the content in the "Text" column
     cells[cells.length - 1].remove(); //style = "display: none;";
@@ -48,12 +48,13 @@ function replaceText() {
 
 function sumColumnUp(index, maxWidth) {
   const style = document.createElement("style");
-  style.appendChild(document.createTextNode(`.mon_list>tbody>tr>td:nth-child(${index + 1}):hover { cursor: pointer; }`));
+  //style.appendChild(document.createTextNode(`.mon_list>tbody>tr>td:nth-child(${index + 1}):hover { cursor: pointer; }`));
   style.appendChild(document.createTextNode(`.mon_list>tbody>tr>td:nth-child(${index + 1}) { max-width: ${maxWidth}rem }`));
+  style.appendChild(document.createTextNode(`.mon_list>tbody>tr>td:nth-child(${index + 1}) { white-space: wrap; }`));
   document.head.appendChild(style);
 
 
-
+/*
   // get all table rows
   let trs = document.getElementsByTagName("tr");
 
@@ -85,6 +86,7 @@ function sumColumnUp(index, maxWidth) {
       }
     });
   }
+*/
 }
 
 function listSpecifiedClasses() {
