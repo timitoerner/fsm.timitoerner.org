@@ -48,12 +48,12 @@ function replaceText() {
 
 function sumColumnUp(index, maxWidth) {
   const style = document.createElement("style");
-  style.appendChild(document.createTextNode(`.mon_list>tbody>tr>td:nth-child(${index + 1}):hover { cursor: pointer; }`));
+  //style.appendChild(document.createTextNode(`.mon_list>tbody>tr>td:nth-child(${index + 1}):hover { cursor: pointer; }`));
   style.appendChild(document.createTextNode(`.mon_list>tbody>tr>td:nth-child(${index + 1}) { max-width: ${maxWidth}rem }`));
   document.head.appendChild(style);
 
 
-
+/*
   // get all table rows
   let trs = document.getElementsByTagName("tr");
 
@@ -85,6 +85,7 @@ function sumColumnUp(index, maxWidth) {
       }
     });
   }
+*/
 }
 
 function listSpecifiedClasses() {
