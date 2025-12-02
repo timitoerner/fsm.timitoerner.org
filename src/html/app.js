@@ -11,7 +11,7 @@ function moveTextToInfoColumn() {
 
     // Move the content from the "Text" column (last cell) to the "Info" column (second-to-last cell)
     const textContent = cells[cells.length - 1].innerHTML;
-    cells[cells.length - 2].innerHTML += "; " + textContent;
+    cells[cells.length - 2].innerHTML = cells[cells.length - 2].innerHTML.trim() + ((textContent.trim().replace("&nbsp;", "") == "") ? "" : "; " + textContent.trim().replace("&nbsp;", ""));
 
     // Optionally, clear the content in the "Text" column
     cells[cells.length - 1].remove(); //style = "display: none;";
