@@ -62,7 +62,7 @@ body {
   border-radius: 0.4rem;
   padding: 0.1rem 0.3rem;
 
-  white-space: wrap;
+  white-space: nowrap;
 }
 
 .classes {
