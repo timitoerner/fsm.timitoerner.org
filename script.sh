@@ -42,6 +42,7 @@ for file in "$@"; do
   # Extract content
   if ! grep -q "<title>404 Not Found</title>" "$file"; then
     body_content=$(sed -n '/<center>/,/<center>/p' "$file" | sed '1d;$d' \
+      | sed "s| width='17'||g" \
       | sed 's|<th class="list" align="center">Text</th>||g' \
       | sed 's|</center>||g' \
       | sed 's|<div class="mon_title">|<div class="heading"><div class="mon_title">|g' \

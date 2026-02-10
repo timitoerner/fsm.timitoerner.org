@@ -7,11 +7,11 @@ function moveTextToInfoColumn() {
     const cells = row.querySelectorAll('td');
 
     // Skip rows that don't have the expected number of columns (in case of missing data)
-    if (cells.length < 7) return;
+    if (cells.length < 8) return;
 
     // Move the content from the "Text" column (last cell) to the "Info" column (second-to-last cell)
     const textContent = cells[cells.length - 1].innerHTML;
-    cells[cells.length - 2].innerHTML = cells[cells.length - 2].innerHTML.trim() + ((textContent.trim().replace("&nbsp;", "") == "") ? "" : "; " + textContent.trim().replace("&nbsp;", ""));
+    cells[cells.length - 3].innerHTML = cells[cells.length - 3].innerHTML.trim() + ((textContent.trim().replace("&nbsp;", "") == "") ? "" : "; " + textContent.trim().replace("&nbsp;", ""));
 
     // Optionally, clear the content in the "Text" column
     cells[cells.length - 1].remove(); //style = "display: none;";
