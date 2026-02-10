@@ -1,3 +1,9 @@
+function removeFirstTableheader() {
+  document.querySelectorAll(".mon_list tbody>:nth-child(1)").forEach(header => {
+    header.remove();
+  });
+}
+
 function moveTextToInfoColumn() {
   // Get all rows in the table (excluding the header row)
   const rows = document.querySelectorAll('.mon_list tr.list');
@@ -183,6 +189,7 @@ function addSupportButtons() {
 }
 
 window.onload = function() {
+  removeFirstTableheader();
   moveTextToInfoColumn();
   listSpecifiedClasses();
   replaceText();

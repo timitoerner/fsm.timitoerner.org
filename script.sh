@@ -49,6 +49,7 @@ for file in "$@"; do
       | sed 's|<b>||g' \
       | sed 's|</b>||g' \
       | sed 's|</center>||g' \
+      | sed 's|<th class="list" align="center">Lehrer</th>|<th class="list" align="center">Ausfall</th>|g' \
       | sed 's|<div class="mon_title">|<div class="heading"><div class="mon_title">|g' \
       | sed 's|<table class="mon_list" >|</div><table class="mon_list" >|g' \
       | sed 's|<table class="mon_list" >|<span class="last-updated">Stand: '${dates[i]}'</span><table class="mon_list" >|g' \
