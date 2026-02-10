@@ -103,22 +103,51 @@ function listSpecifiedClasses() {
 
   const rows = document.querySelectorAll('.mon_list tr.list');
 
-  // go through all rows and all specified classes and remove the not specified classes 
-  rows.forEach(row => {
-    // uses variable because removes after ALL keys are checked an NONE match
-    let shouldKeep = false;
+  const displayClasses = ["5", "6", "7", "8", "9", "10", "EF", "Q1", "Q2"];
+  const filterClasses = [ 
+    ["/5", "5/", "5."], 
+    ["/6", "6/", "6."], 
+    ["/7", "7/", "7."], 
+    ["/8", "8/", "8."], 
+    ["/9", "9/", "9."], 
+    ["/10", "10/", "10."], 
+    ["/11", "11/", "11.", "EF"], 
+    ["/12", "12/", "12.", "Q1"], 
+    ["/13", "13/", "13.", "Q2"]
+  ];
 
-    for (const key of urlParams.keys()) {
-      // checks if specified class (key) is present in row
-      if (row.firstElementChild.innerHTML.includes(key) ||
+  let allFilters = [];
+
+  for (let i = 0; i < displayClasses.length; i++) {
+
+    const disClas = displayClasses[i];
+    const filClas = filterClasses[i];
+
+    if (urlParams.keys().toArray().includes(disClas)) {
+        allFilters = allFilters.concat(filClas);
+    }
+    //console.log(allFilters);
+  }
+
+    // go through all rows and all specified classes and remove the not specified classes 
+  rows.forEach(row => {
+    // checks if specified class (fil) is present in row
+    let keep = false;
+    for (let i = 0; i < allFilters.length; i++) {
+
+      const fil = allFilters[i];
+      //console.log(fil);
+      //console.log(row.firstElementChild.innerHTML.includes(fil));
+
+      if (row.firstElementChild.innerHTML.includes(fil) ||
         // exclude table haeders
         row.firstElementChild.nodeName == "TH" ||
         // exclude 'Deutsch als Fremdsprache'
         row.firstElementChild.innerHTML == "DAZ") {
-        shouldKeep = true;
+        keep = true;
       }
     }
-    if (!shouldKeep) {
+    if (!keep) {
       row.remove();
     }
   });
@@ -128,8 +157,6 @@ function listSpecifiedClasses() {
 function classButtons() {
   // grades that will be displayed
   let displayClasses = ["5", "6", "7", "8", "9", "10", "EF", "Q1", "Q2"];
-  // the url param filters for the specific grade
-  let filterClasses = ["5/&5.&", "/6&6.&", "7/&7.&", "/8&8.&", "9.&", "10.&", "EF&11.&", "Q1&", "Q2&"];
 
   // the parent div for the clickable filters
   document.body.insertAdjacentHTML("afterbegin", "<div class='classes'></div>")
@@ -139,27 +166,26 @@ function classButtons() {
   for (let i = 0; i < displayClasses.length; i++) {
     // keep track of current grade
     let disClas = displayClasses[i];
-    let filClas = filterClasses[i];
 
     //make new div with grade inside
     document.getElementsByClassName("classes").item(0).insertAdjacentHTML("beforeend", "<div>" + disClas + "</div>");
 
-    // make the grades clickable by adding the filter grade to the url params or removing it
+    // make the grades clickable by adding the grade to the url params or removing it
     document.getElementsByClassName("classes").item(0).lastChild.addEventListener("click", () => {
-      if (location.search.includes(filClas)) {
+      if (location.search.includes(disClas + "&")) {
         // remove filter grade
-        location.search = location.search.replace(filClas, "");
+        location.search = location.search.replace(disClas + "&", "");
       }
       else {
         // add filter grade
-        location.search += filClas;
+        location.search += disClas + "&";
       }
     }
     )
 
     
     // make the specified grades pop out by switching colors
-    if (location.search.includes(filClas)) {
+    if (location.search.includes(disClas)) {
       document.getElementsByClassName("classes").item(0).lastChild.style.backgroundColor = "var(--color-primary-a50)";
       document.getElementsByClassName("classes").item(0).lastChild.style.color = "var(--color-surface-a10)";
     }
@@ -167,7 +193,6 @@ function classButtons() {
       document.getElementsByClassName("classes").item(0).lastChild.style.backgroundColor = "var(--color-surface-a10)";
       document.getElementsByClassName("classes").item(0).lastChild.style.color = "var(--color-primary-a50)";
     }
-
   }
 }
 
