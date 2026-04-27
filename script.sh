@@ -44,6 +44,7 @@ for file in "$@"; do
     body_content=$(sed -n '/<center>/,/<center>/p' "$file" | sed '1d;$d' \
       | sed "s| width='42'||g" \
       | sed "s| width='17'||g" \
+      | sed "s| width='[0-9][0-9]'||g" \
       | sed 's|<th class="list" align="center">Text</th>||g' \
       | sed 's|<th class="list" align="center"><b>Klasse(n)</b></th>|<th class="list" align="center"><b>Klasse</b></th>|g' \
       | sed 's|<b>||g' \
