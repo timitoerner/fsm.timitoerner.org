@@ -31,7 +31,7 @@ function replaceText() {
     "Beginn in Jahrgangsstufe": "ab Jg.",
     "Naturwissenschaften": "NW",
     "Naturwissenschaftliche Experimente": "NW Experimente",
-    "Tutoren Wirtschaftsstunde": "TutorIn Wirtschafts"
+    "Tutoren Wirtschaftsstunde": "TutorIn Wirtschaft",
     "Mathematik": "Mathe",
     "Individuelle Lernzeit": "ILZ",
     "Religionslehre": "Religion",
